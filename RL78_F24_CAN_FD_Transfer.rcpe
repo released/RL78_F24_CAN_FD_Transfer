@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<MicomToolCommonProjectFile Version="1.00">
+  <CreatorType Name="CubeSuite+" Version="V8.14.00  [02 Jun 2025]" />
+  <Placeholders>
+    <PlaceholderPrefix>%</PlaceholderPrefix>
+    <PlaceholderPostfix>%</PlaceholderPostfix>
+  </Placeholders>
+  <Project Name="RL78_F24_CAN_FD_Transfer" Type="Application">
+    <Files>
+      <Category Name="Smart Configurator">
+        <Category Name="Config_PORT">
+          <Path>src\smc_gen\Config_PORT\Config_PORT.c</Path>
+          <Path>src\smc_gen\Config_PORT\Config_PORT.h</Path>
+        </Category>
+        <Category Name="Config_TAU0_1">
+          <Path>src\smc_gen\Config_TAU0_1\Config_TAU0_1.c</Path>
+          <Path>src\smc_gen\Config_TAU0_1\Config_TAU0_1.h</Path>
+        </Category>
+        <Category Name="general">
+          <Path>src\smc_gen\general\r_cg_macrodriver.h</Path>
+          <Path>src\smc_gen\general\r_cg_port.h</Path>
+          <Path>src\smc_gen\general\r_cg_tau.h</Path>
+          <Path>src\smc_gen\general\r_cg_tau_common.c</Path>
+          <Path>src\smc_gen\general\r_cg_tau_common.h</Path>
+          <Path>src\smc_gen\general\r_cg_userdefine.h</Path>
+          <Path>src\smc_gen\general\r_smc_entry.h</Path>
+          <Path>src\smc_gen\general\r_cg_sau.h</Path>
+          <Path>src\smc_gen\general\r_cg_sau_common.c</Path>
+          <Path>src\smc_gen\general\r_cg_sau_common.h</Path>
+          <Path>src\smc_gen\general\r_cg_intc.h</Path>
+        </Category>
+        <Category Name="r_bsp">
+          <Path>src\smc_gen\r_bsp\platform.h</Path>
+          <Path>src\smc_gen\r_bsp\readme.txt</Path>
+          <Category Name="board">
+            <Category Name="generic_rl78_f24">
+              <Path>src\smc_gen\r_bsp\board\generic_rl78_f24\hdwinit.c</Path>
+              <Path>src\smc_gen\r_bsp\board\generic_rl78_f24\hdwinit.h</Path>
+              <Path>src\smc_gen\r_bsp\board\generic_rl78_f24\r_bsp.h</Path>
+              <Path>src\smc_gen\r_bsp\board\generic_rl78_f24\r_bsp_config_reference.h</Path>
+              <Path>src\smc_gen\r_bsp\board\generic_rl78_f24\r_bsp_config_reference_ccrl.inc</Path>
+              <Path>src\smc_gen\r_bsp\board\generic_rl78_f24\r_bsp_config_reference_iccrl.inc</Path>
+              <Path>src\smc_gen\r_bsp\board\generic_rl78_f24\r_bsp_config_reference_llvm.inc</Path>
+              <Path>src\smc_gen\r_bsp\board\generic_rl78_f24\r_bsp_init.c</Path>
+              <Path>src\smc_gen\r_bsp\board\generic_rl78_f24\stkinit.asm</Path>
+            </Category>
+          </Category>
+          <Category Name="doc">
+            <Category Name="en">
+              <Path>src\smc_gen\r_bsp\doc\en\r01an5522ej0162-rl78-bsp.pdf</Path>
+            </Category>
+            <Category Name="ja">
+              <Path>src\smc_gen\r_bsp\doc\ja\r01an5522jj0162-rl78-bsp.pdf</Path>
+            </Category>
+          </Category>
+          <Category Name="mcu">
+            <Category Name="all">
+              <Path>src\smc_gen\r_bsp\mcu\all\fsp_common_api.h</Path>
+              <Path>src\smc_gen\r_bsp\mcu\all\r_bsp_common.c</Path>
+              <Path>src\smc_gen\r_bsp\mcu\all\r_bsp_common.h</Path>
+              <Path>src\smc_gen\r_bsp\mcu\all\r_bsp_common_ccrl.asm</Path>
+              <Path>src\smc_gen\r_bsp\mcu\all\r_bsp_rl78_compiler.h</Path>
+              <Path>src\smc_gen\r_bsp\mcu\all\r_fsp_error.h</Path>
+              <Path>src\smc_gen\r_bsp\mcu\all\r_rtos.h</Path>
+            </Category>
+            <Category Name="rl78_f24">
+              <Path>src\smc_gen\r_bsp\mcu\rl78_f24\mcu_clocks.c</Path>
+              <Path>src\smc_gen\r_bsp\mcu\rl78_f24\mcu_clocks.h</Path>
+              <Path>src\smc_gen\r_bsp\mcu\rl78_f24\mcu_info.h</Path>
+              <Category Name="register_access">
+                <Category Name="ccrl">
+                  <Path>src\smc_gen\r_bsp\mcu\rl78_f24\register_access\ccrl\iodefine.h</Path>
+                </Category>
+              </Category>
+            </Category>
+          </Category>
+        </Category>
+        <Category Name="r_config">
+          <Path>src\smc_gen\r_config\r_bsp_config.h</Path>
+          <Path>src\smc_gen\r_config\r_bsp_config.inc</Path>
+          <Path>src\smc_gen\r_config\r_rscanfd_rl78_config.h</Path>
+        </Category>
+        <Category Name="r_pincfg">
+          <Path>src\smc_gen\r_pincfg\Pin.h</Path>
+          <Path>src\smc_gen\r_pincfg\r_rscanfd_rl78_pinset.c</Path>
+          <Path>src\smc_gen\r_pincfg\r_rscanfd_rl78_pinset.h</Path>
+        </Category>
+        <Category Name="Config_UART0">
+          <Path>src\smc_gen\Config_UART0\Config_UART0.c</Path>
+          <Path>src\smc_gen\Config_UART0\Config_UART0.h</Path>
+        </Category>
+        <Category Name="Config_INTC">
+          <Path>src\smc_gen\Config_INTC\Config_INTC.h</Path>
+        </Category>
+        <Category Name="r_rscanfd_rl78">
+          <Path>src\smc_gen\r_rscanfd_rl78\r_rscanfd_rl78.c</Path>
+          <Path>src\smc_gen\r_rscanfd_rl78\r_rscanfd_rl78_if.h</Path>
+          <Path>src\smc_gen\r_rscanfd_rl78\r_rscanfd_rl78_private.h</Path>
+          <Path>src\smc_gen\r_rscanfd_rl78\r_rscanfd_rl78_private_compiler.h</Path>
+          <Category Name="doc">
+            <Category Name="en">
+              <Path>src\smc_gen\r_rscanfd_rl78\doc\en\r01an6334ej0100-rl78f24.pdf</Path>
+            </Category>
+            <Category Name="ja">
+              <Path>src\smc_gen\r_rscanfd_rl78\doc\ja\r01an6334jj0100-rl78f24.pdf</Path>
+            </Category>
+          </Category>
+        </Category>
+      </Category>
+      <Path>can_fd_module.h</Path>
+      <Path>..\RL78_F24_Boot_loader_CAN\common\device_board.c</Path>
+      <Path>..\RL78_F24_Boot_loader_CAN\common\device_can.c</Path>
+      <Path>..\RL78_F24_Boot_loader_CAN\common\f24_clock.c</Path>
+      <Path>can_transfer_protocol.c</Path>
+      <Path>generated_projection\cstart.asm</Path>
+      <Path>transfer_main.c</Path>
+      <Path>device_vectors.asm</Path>
+    </Files>
+    <DebugOptions>
+      <ConnectSettings>
+        <MainClock>4000000</MainClock>
+      </ConnectSettings>
+      <DebugToolSettings />
+    </DebugOptions>
+    <Device Series="RL78">R7F124FPJ5xFB</Device>
+    <BuildOptions Name="CC-RL" Version="V1.15.01">
+      <BuildMode Name="DefaultBuild" Active="True">
+        <LinkOrder>
+          <Path>DefaultBuild\Config_PORT.obj</Path>
+          <Path>DefaultBuild\Config_TAU0_1.obj</Path>
+          <Path>DefaultBuild\r_cg_tau_common.obj</Path>
+          <Path>DefaultBuild\hdwinit.obj</Path>
+          <Path>DefaultBuild\r_bsp_init.obj</Path>
+          <Path>DefaultBuild\stkinit.obj</Path>
+          <Path>DefaultBuild\r_bsp_common.obj</Path>
+          <Path>DefaultBuild\r_bsp_common_ccrl.obj</Path>
+          <Path>DefaultBuild\mcu_clocks.obj</Path>
+          <Path>DefaultBuild\Config_UART0.obj</Path>
+          <Path>DefaultBuild\r_cg_sau_common.obj</Path>
+          <Path>DefaultBuild\r_rscanfd_rl78.obj</Path>
+          <Path>DefaultBuild\r_rscanfd_rl78_pinset.obj</Path>
+          <Path>DefaultBuild\device_board.obj</Path>
+          <Path>DefaultBuild\device_can.obj</Path>
+          <Path>DefaultBuild\f24_clock.obj</Path>
+          <Path>DefaultBuild\can_transfer_protocol.obj</Path>
+          <Path>DefaultBuild\cstart.obj</Path>
+          <Path>DefaultBuild\transfer_main.obj</Path>
+          <Path>DefaultBuild\device_vectors.obj</Path>
+        </LinkOrder>
+        <CommonOptions>
+          <IncludePathForC>.</IncludePathForC>
+          <IncludePathForC>..\RL78_F24_Boot_loader_CAN</IncludePathForC>
+          <IncludePathForC>..\RL78_F24_Boot_loader_CAN\common</IncludePathForC>
+          <IncludePathForC>..\RL78_F24_Boot_loader_CAN\RFDRL78T02\include</IncludePathForC>
+          <IncludePathForC>..\RL78_F24_Boot_loader_CAN\RFDRL78T02\include\rfd</IncludePathForC>
+          <IncludePathForC>src\smc_gen\Config_INTC</IncludePathForC>
+          <IncludePathForC>src\smc_gen\Config_PORT</IncludePathForC>
+          <IncludePathForC>src\smc_gen\Config_TAU0_1</IncludePathForC>
+          <IncludePathForC>src\smc_gen\Config_UART0</IncludePathForC>
+          <IncludePathForC>src\smc_gen\general</IncludePathForC>
+          <IncludePathForC>src\smc_gen\r_bsp</IncludePathForC>
+          <IncludePathForC>src\smc_gen\r_bsp\board\generic_rl78_f24</IncludePathForC>
+          <IncludePathForC>src\smc_gen\r_bsp\mcu\all</IncludePathForC>
+          <IncludePathForC>src\smc_gen\r_bsp\mcu\rl78_f24</IncludePathForC>
+          <IncludePathForC>src\smc_gen\r_bsp\mcu\rl78_f24\register_access\ccrl</IncludePathForC>
+          <IncludePathForC>src\smc_gen\r_config</IncludePathForC>
+          <IncludePathForC>src\smc_gen\r_pincfg</IncludePathForC>
+          <IncludePathForC>src\smc_gen\r_rscanfd_rl78</IncludePathForC>
+          <IncludePathForAsm>.</IncludePathForAsm>
+          <IncludePathForAsm>..\RL78_F24_Boot_loader_CAN</IncludePathForAsm>
+          <IncludePathForAsm>..\RL78_F24_Boot_loader_CAN\common</IncludePathForAsm>
+          <IncludePathForAsm>..\RL78_F24_Boot_loader_CAN\RFDRL78T02\include</IncludePathForAsm>
+          <IncludePathForAsm>..\RL78_F24_Boot_loader_CAN\RFDRL78T02\include\rfd</IncludePathForAsm>
+          <IncludePathForAsm>src\smc_gen\Config_INTC</IncludePathForAsm>
+          <IncludePathForAsm>src\smc_gen\Config_PORT</IncludePathForAsm>
+          <IncludePathForAsm>src\smc_gen\Config_TAU0_1</IncludePathForAsm>
+          <IncludePathForAsm>src\smc_gen\Config_UART0</IncludePathForAsm>
+          <IncludePathForAsm>src\smc_gen\general</IncludePathForAsm>
+          <IncludePathForAsm>src\smc_gen\r_bsp</IncludePathForAsm>
+          <IncludePathForAsm>src\smc_gen\r_bsp\board\generic_rl78_f24</IncludePathForAsm>
+          <IncludePathForAsm>src\smc_gen\r_bsp\mcu\all</IncludePathForAsm>
+          <IncludePathForAsm>src\smc_gen\r_bsp\mcu\rl78_f24</IncludePathForAsm>
+          <IncludePathForAsm>src\smc_gen\r_bsp\mcu\rl78_f24\register_access\ccrl</IncludePathForAsm>
+          <IncludePathForAsm>src\smc_gen\r_config</IncludePathForAsm>
+          <IncludePathForAsm>src\smc_gen\r_pincfg</IncludePathForAsm>
+          <IncludePathForAsm>src\smc_gen\r_rscanfd_rl78</IncludePathForAsm>
+          <MacroForC>F24_DEVICE_TRANSFER</MacroForC>
+        </CommonOptions>
+        <GeneralOptions>
+          <CommandsBefore>powershell.exe -NoProfile -ExecutionPolicy Bypass -File "..\RL78_F24_Boot_loader_CAN\tools\prepare_projects.ps1" -Kind transfer -Project "." -ArtifactsOnly
+</CommandsBefore>
+          <CommandsAfter>powershell.exe -NoProfile -ExecutionPolicy Bypass -File "..\RL78_F24_Boot_loader_CAN\tools\package_images.ps1" -Kind transfer -Project "."
+</CommandsAfter>
+          <SimultaneouslyBuild>False</SimultaneouslyBuild>
+        </GeneralOptions>
+        <CompileOptions>
+          <Option>-cpu=S3</Option>
+          <Option>-obj_path=%BuildModeName%</Option>
+          <Option>-dev=%MicomToolPath%\Device\RL78\Devicefile\DR7F124FPJ.DVF</Option>
+          <Option>-g</Option>
+          <Option>-g_line</Option>
+          <Option>-goptimize</Option>
+          <Option>-I .</Option>
+          <Option>-I ..\RL78_F24_Boot_loader_CAN</Option>
+          <Option>-I ..\RL78_F24_Boot_loader_CAN\common</Option>
+          <Option>-I ..\RL78_F24_Boot_loader_CAN\RFDRL78T02\include</Option>
+          <Option>-I ..\RL78_F24_Boot_loader_CAN\RFDRL78T02\include\rfd</Option>
+          <Option>-I src\smc_gen\Config_INTC</Option>
+          <Option>-I src\smc_gen\Config_PORT</Option>
+          <Option>-I src\smc_gen\Config_TAU0_1</Option>
+          <Option>-I src\smc_gen\Config_UART0</Option>
+          <Option>-I src\smc_gen\general</Option>
+          <Option>-I src\smc_gen\r_bsp</Option>
+          <Option>-I src\smc_gen\r_bsp\board\generic_rl78_f24</Option>
+          <Option>-I src\smc_gen\r_bsp\mcu\all</Option>
+          <Option>-I src\smc_gen\r_bsp\mcu\rl78_f24</Option>
+          <Option>-I src\smc_gen\r_bsp\mcu\rl78_f24\register_access\ccrl</Option>
+          <Option>-I src\smc_gen\r_config</Option>
+          <Option>-I src\smc_gen\r_pincfg</Option>
+          <Option>-I src\smc_gen\r_rscanfd_rl78</Option>
+          <Option>-preinclude=..\RL78_F24_Boot_loader_CAN\common\f24_device_config.h</Option>
+          <Option>-D F24_DEVICE_TRANSFER</Option>
+          <Option>-lang=c99</Option>
+          <Option>-far_rom</Option>
+          <Option>-Olite</Option>
+          <Option>-c</Option>
+        </CompileOptions>
+        <AssembleOptions>
+          <Option>-cpu=S3</Option>
+          <Option>-obj_path=%BuildModeName%</Option>
+          <Option>-dev=%MicomToolPath%\Device\RL78\Devicefile\DR7F124FPJ.DVF</Option>
+          <Option>-g</Option>
+          <Option>-I .</Option>
+          <Option>-I ..\RL78_F24_Boot_loader_CAN</Option>
+          <Option>-I ..\RL78_F24_Boot_loader_CAN\common</Option>
+          <Option>-I ..\RL78_F24_Boot_loader_CAN\RFDRL78T02\include</Option>
+          <Option>-I ..\RL78_F24_Boot_loader_CAN\RFDRL78T02\include\rfd</Option>
+          <Option>-I src\smc_gen\Config_INTC</Option>
+          <Option>-I src\smc_gen\Config_PORT</Option>
+          <Option>-I src\smc_gen\Config_TAU0_1</Option>
+          <Option>-I src\smc_gen\Config_UART0</Option>
+          <Option>-I src\smc_gen\general</Option>
+          <Option>-I src\smc_gen\r_bsp</Option>
+          <Option>-I src\smc_gen\r_bsp\board\generic_rl78_f24</Option>
+          <Option>-I src\smc_gen\r_bsp\mcu\all</Option>
+          <Option>-I src\smc_gen\r_bsp\mcu\rl78_f24</Option>
+          <Option>-I src\smc_gen\r_bsp\mcu\rl78_f24\register_access\ccrl</Option>
+          <Option>-I src\smc_gen\r_config</Option>
+          <Option>-I src\smc_gen\r_pincfg</Option>
+          <Option>-I src\smc_gen\r_rscanfd_rl78</Option>
+          <Option>-c</Option>
+        </AssembleOptions>
+        <LinkOptions>
+          <Option>-SECURITY_ID=00000000000000000000000000000000</Option>
+          <Option>-FLASH_SECURITY_ID=FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</Option>
+          <Option>-DEVICE=%MicomToolPath%\Device\RL78\Devicefile\DR7F124FPJ.DVF</Option>
+          <Option>-DEBug</Option>
+          <Option>-NOCOmpress</Option>
+          <Option>-OPtimize=SYmbol_delete</Option>
+          <Option>-OUtput=%BuildModeName%\%ProjectName%.abs</Option>
+          <Option>-OCDBG=A5</Option>
+          <Option>-SECURITY_OPT_BYTE=FE</Option>
+          <Option>-DEBUG_MONITOR=3FF00-3FFFF</Option>
+          <Option>-USER_OPT_BYTE=EFE3E8</Option>
+          <Option>-ENTry=_start</Option>
+          <Option>-LISt=%BuildModeName%\%ProjectName%.map</Option>
+          <Option>-SHow=SYmbol,Reference,Xreference,Total_size,VECTOR</Option>
+          <Option>-STARt=.text,.RLIB,.SLIB,.textf,.constf,.data,.sdata,.init_array/000F0,.dataR,.stack_bss,.bss/F9F00,.sdataR,.sbss/FFE20</Option>
+          <Option>-ROm=.data=.dataR</Option>
+          <Option>-ROm=.sdata=.sdataR</Option>
+          <Option>-NOMessage</Option>
+          <Option>-Total_size</Option>
+          <Option>-NOLOgo</Option>
+          <Option>-END</Option>
+          <Option>-Input=%BuildModeName%\%ProjectName%.abs</Option>
+          <Option>-DEVICE=%MicomToolPath%\Device\RL78\Devicefile\DR7F124FPJ.DVF</Option>
+          <Option>-OUtput=%BuildModeName%\%ProjectName%.mot</Option>
+          <Option>-FOrm=Stype</Option>
+          <Option>-NOMessage</Option>
+          <Option>-EXIt</Option>
+        </LinkOptions>
+        <LibraryGenerateOptions>
+          <Option>-cpu=S3</Option>
+          <Option>-output=%BuildModeName%\%ProjectName%.lib</Option>
+          <Option>-lang=c99</Option>
+          <Option>-head=all</Option>
+          <Option>-nologo</Option>
+          <GenerateMode>BuildOptionChanged</GenerateMode>
+        </LibraryGenerateOptions>
+        <IOHeaderGenerationOptions>
+          <Option>-df=%MicomToolPath%\Device\RL78\Devicefile\DR7F124FPJ.DVF</Option>
+          <Option>-o=%ProjectDir%\iodefine.h</Option>
+          <Option>-f</Option>
+          <UpdateIOMode>None</UpdateIOMode>
+        </IOHeaderGenerationOptions>
+      </BuildMode>
+    </BuildOptions>
+    <Extension_SmcCodePartRL78>
+      <CodeGeneratorData></CodeGeneratorData>
+      <GenerateFileFolder>D:\SourceCode\_Avery_Renesas\CS+\RL78_F24_CAN_FD_Transfer</GenerateFileFolder>
+      <SCFGFile>RL78_F24_CAN_FD_Transfer.scfg</SCFGFile>
+      <SmcExePath>C:\Program Files (x86)\Renesas Electronics\SmartConfigurator\RL78\eclipse\SmartConfigurator.exe</SmcExePath>
+      <CodeGeneratorFilesGuid>f1f83d28-5e28-4ba0-8eef-43d900de5bac</CodeGeneratorFilesGuid>
+    </Extension_SmcCodePartRL78>
+  </Project>
+</MicomToolCommonProjectFile>
