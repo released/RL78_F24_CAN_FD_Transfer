@@ -39,13 +39,7 @@
       <TreeImageGuid>f654126d-e7ad-426d-be34-8455271d959b</TreeImageGuid>
       <ParentItem>76f247c0-0a47-461a-b088-233f5a2b5061</ParentItem>
     </Instance>
-    <Instance Guid="a089e513-b7c0-4ea1-92a6-f80ba3ad011c">
-      <Name>transfer_main.c</Name>
-      <Type>File</Type>
-      <RelativePath>transfer_main.c</RelativePath>
-      <TreeImageGuid>941832c1-fc3b-4e1b-94e8-01ea17128b42</TreeImageGuid>
-      <ParentItem>76f247c0-0a47-461a-b088-233f5a2b5061</ParentItem>
-    </Instance>
+    
     <Instance Guid="e54ceb4f-1f64-4f6d-b1e1-e6efeff4a972">
       <Name>device_vectors.asm</Name>
       <Type>File</Type>
@@ -561,7 +555,13 @@
       <RelativePath>custom_transfer_fd.h</RelativePath>
       <TreeImageGuid>03cad1e8-2eb3-4cde-a8a3-982423631122</TreeImageGuid>
       <ParentItem>76f247c0-0a47-461a-b088-233f5a2b5061</ParentItem>
-    </Instance></Class>
+    </Instance>
+<Instance Guid="671ccbf2-18c3-4dac-9760-0522fd92e844"><Name>main.c</Name><Type>File</Type><RelativePath>main.c</RelativePath><TreeImageGuid>941832c1-fc3b-4e1b-94e8-01ea17128b42</TreeImageGuid><ParentItem>76f247c0-0a47-461a-b088-233f5a2b5061</ParentItem></Instance>
+
+<Instance Guid="beb6b9a6-05f5-464d-93b4-41b45ac39373"><Name>custom_func.c</Name><Type>File</Type><RelativePath>custom_func.c</RelativePath><TreeImageGuid>941832c1-fc3b-4e1b-94e8-01ea17128b42</TreeImageGuid><ParentItem>76f247c0-0a47-461a-b088-233f5a2b5061</ParentItem></Instance>
+
+<Instance Guid="e98cbd27-294d-485a-83db-f1f98ada47bf"><Name>custom_func.h</Name><Type>File</Type><RelativePath>custom_func.h</RelativePath><TreeImageGuid>03cad1e8-2eb3-4cde-a8a3-982423631122</TreeImageGuid><ParentItem>76f247c0-0a47-461a-b088-233f5a2b5061</ParentItem></Instance>
+</Class>
   <Class Guid="fb98844b-2c27-4275-9804-f6e63e204da0">
     <Instance Guid="fb98844b-2c27-4275-9804-f6e63e204da0">
       <TypeOfStorageOfUserSettings>UserMtudFile</TypeOfStorageOfUserSettings>

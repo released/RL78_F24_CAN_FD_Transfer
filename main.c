@@ -16,28 +16,16 @@
  *
  * Copyright (C) 2020-2022 Renesas Electronics Corporation. All rights reserved.
  *********************************************************************************************************************/
-/***********************************************************************/
-/*                                                                     */
-/*  FILE        :Main.c or Main.cpp                                    */
-/*  DATE        :                                                      */
-/*  DESCRIPTION :Main Program                                          */
-/*  CPU TYPE    :                                                      */
-/*                                                                     */
-/*  NOTE:THIS IS A TYPICAL EXAMPLE.                                    */
-/*                                                                     */
-/***********************************************************************/
-#include "inc_main.h"
-
-void main(void);
+/* User-owned entry. SC/Code Generator outputs remain under src/. */
+#include "custom_func.h"
 
 void main(void)
 {
+    /* Start user code for main. Do not edit comment generated here */
     hardware_init();
-    
-    /* Got no where to go, just loop forever */
-    while(1)
+    for (;;)
     {
         loop();
-
     }
+    /* End user code. Do not edit comment generated here */
 }

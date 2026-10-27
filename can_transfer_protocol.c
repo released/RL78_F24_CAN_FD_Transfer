@@ -6,55 +6,55 @@
 #include "can_transfer_protocol.h"
 #include "transfer_diagnostics.h"
 
-#define CAN_TRANSFER_TX_IDLE                    (0U)
-#define CAN_TRANSFER_TX_SENDING                 (1U)
-#define CAN_TRANSFER_TX_ABORTING                (2U)
-#define CAN_TRANSFER_TX_FAULT                   (3U)
+#define CAN_TRANSFER_TX_IDLE (0U)
+#define CAN_TRANSFER_TX_SENDING (1U)
+#define CAN_TRANSFER_TX_ABORTING (2U)
+#define CAN_TRANSFER_TX_FAULT (3U)
 
-#define CAN_TRANSFER_TX_TIMEOUT_MS              (100U)
-#define CAN_TRANSFER_ABORT_TIMEOUT_MS           (100U)
-#define CAN_TRANSFER_ERROR_TRACE_INTERVAL_MS    (250U)
-#define CAN_TRANSFER_TICK_WRAP_MS               (65536UL)
+#define CAN_TRANSFER_TX_TIMEOUT_MS (100U)
+#define CAN_TRANSFER_ABORT_TIMEOUT_MS (100U)
+#define CAN_TRANSFER_ERROR_TRACE_INTERVAL_MS (250U)
+#define CAN_TRANSFER_TICK_WRAP_MS (65536UL)
 
-#define CAN_TRANSFER_INFO_PAGE_VERSION          (0U)
-#define CAN_TRANSFER_INFO_PAGE_TARGET           (1U)
-#define CAN_TRANSFER_INFO_PAGE_PART_0            (2U)
-#define CAN_TRANSFER_INFO_PAGE_PART_1            (3U)
-#define CAN_TRANSFER_INFO_PAGE_PART_2            (4U)
-#define CAN_TRANSFER_INFO_PAGE_PART_3            (5U)
-#define CAN_TRANSFER_INFO_PAGE_CAPABILITIES      (6U)
+#define CAN_TRANSFER_INFO_PAGE_VERSION (0U)
+#define CAN_TRANSFER_INFO_PAGE_TARGET (1U)
+#define CAN_TRANSFER_INFO_PAGE_PART_0 (2U)
+#define CAN_TRANSFER_INFO_PAGE_PART_1 (3U)
+#define CAN_TRANSFER_INFO_PAGE_PART_2 (4U)
+#define CAN_TRANSFER_INFO_PAGE_PART_3 (5U)
+#define CAN_TRANSFER_INFO_PAGE_CAPABILITIES (6U)
 
-#define CAN_TRANSFER_STATS_RX_FRAMES             (0U)
-#define CAN_TRANSFER_STATS_TX_FRAMES             (1U)
-#define CAN_TRANSFER_STATS_RX_LOST               (2U)
-#define CAN_TRANSFER_STATS_TX_FAILURES           (3U)
-#define CAN_TRANSFER_STATS_PROTOCOL_ERRORS       (4U)
-#define CAN_TRANSFER_STATS_CRC_ERRORS            (5U)
-#define CAN_TRANSFER_STATS_DUPLICATES            (6U)
-#define CAN_TRANSFER_STATS_WARNING_ENTRIES       (7U)
-#define CAN_TRANSFER_STATS_PASSIVE_ENTRIES       (8U)
-#define CAN_TRANSFER_STATS_BUS_OFF_ENTRIES       (9U)
-#define CAN_TRANSFER_STATS_LAST_DRIVER_RESULT    (10U)
-#define CAN_TRANSFER_STATS_LAST_ERROR_FLAGS      (11U)
+#define CAN_TRANSFER_STATS_RX_FRAMES (0U)
+#define CAN_TRANSFER_STATS_TX_FRAMES (1U)
+#define CAN_TRANSFER_STATS_RX_LOST (2U)
+#define CAN_TRANSFER_STATS_TX_FAILURES (3U)
+#define CAN_TRANSFER_STATS_PROTOCOL_ERRORS (4U)
+#define CAN_TRANSFER_STATS_CRC_ERRORS (5U)
+#define CAN_TRANSFER_STATS_DUPLICATES (6U)
+#define CAN_TRANSFER_STATS_WARNING_ENTRIES (7U)
+#define CAN_TRANSFER_STATS_PASSIVE_ENTRIES (8U)
+#define CAN_TRANSFER_STATS_BUS_OFF_ENTRIES (9U)
+#define CAN_TRANSFER_STATS_LAST_DRIVER_RESULT (10U)
+#define CAN_TRANSFER_STATS_LAST_ERROR_FLAGS (11U)
 
-#define CAN_TRANSFER_ERROR_BUS_FLAG              (0x0001U)
-#define CAN_TRANSFER_ERROR_WARNING_FLAG          (0x0002U)
-#define CAN_TRANSFER_ERROR_PASSIVE_FLAG          (0x0004U)
-#define CAN_TRANSFER_ERROR_BUS_OFF_FLAG          (0x0008U)
-#define CAN_TRANSFER_ERROR_RECOVERY_FLAG         (0x0010U)
-#define CAN_TRANSFER_ERROR_OVERLOAD_FLAG         (0x0020U)
-#define CAN_TRANSFER_ERROR_BUS_LOCK_FLAG         (0x0040U)
-#define CAN_TRANSFER_ERROR_ARBITRATION_FLAG      (0x0080U)
-#define CAN_TRANSFER_ERROR_STUFF_FLAG            (0x0100U)
-#define CAN_TRANSFER_ERROR_FORM_FLAG             (0x0200U)
-#define CAN_TRANSFER_ERROR_ACK_FLAG              (0x0400U)
-#define CAN_TRANSFER_ERROR_CRC_FLAG              (0x0800U)
-#define CAN_TRANSFER_ERROR_RECESSIVE_FLAG        (0x1000U)
-#define CAN_TRANSFER_ERROR_DOMINANT_FLAG         (0x2000U)
-#define CAN_TRANSFER_ERROR_ACK_DELIMITER_FLAG    (0x4000U)
+#define CAN_TRANSFER_ERROR_BUS_FLAG (0x0001U)
+#define CAN_TRANSFER_ERROR_WARNING_FLAG (0x0002U)
+#define CAN_TRANSFER_ERROR_PASSIVE_FLAG (0x0004U)
+#define CAN_TRANSFER_ERROR_BUS_OFF_FLAG (0x0008U)
+#define CAN_TRANSFER_ERROR_RECOVERY_FLAG (0x0010U)
+#define CAN_TRANSFER_ERROR_OVERLOAD_FLAG (0x0020U)
+#define CAN_TRANSFER_ERROR_BUS_LOCK_FLAG (0x0040U)
+#define CAN_TRANSFER_ERROR_ARBITRATION_FLAG (0x0080U)
+#define CAN_TRANSFER_ERROR_STUFF_FLAG (0x0100U)
+#define CAN_TRANSFER_ERROR_FORM_FLAG (0x0200U)
+#define CAN_TRANSFER_ERROR_ACK_FLAG (0x0400U)
+#define CAN_TRANSFER_ERROR_CRC_FLAG (0x0800U)
+#define CAN_TRANSFER_ERROR_RECESSIVE_FLAG (0x1000U)
+#define CAN_TRANSFER_ERROR_DOMINANT_FLAG (0x2000U)
+#define CAN_TRANSFER_ERROR_ACK_DELIMITER_FLAG (0x4000U)
 
-#define CAN_TRANSFER_CLEAR_KEY_0                 (0xC3U)
-#define CAN_TRANSFER_CLEAR_KEY_1                 (0x3CU)
+#define CAN_TRANSFER_CLEAR_KEY_0 (0xC3U)
+#define CAN_TRANSFER_CLEAR_KEY_1 (0x3CU)
 
 typedef struct
 {
@@ -144,18 +144,18 @@ static void trace_frame(const char *direction, const can_frame_t *frame)
     uint8_t data_length;
     const char *crc_result;
 
-    data_length = (frame->DLC <= CT_FD64_SIZE) ?
-                  (uint8_t)frame->DLC : CT_FD64_SIZE;
+    data_length = (frame->DLC <= CT_FD64_SIZE) ? (uint8_t)frame->DLC : CT_FD64_SIZE;
     crc_result = "N/A";
     if (data_length == CAN_TRANSFER_FRAME_SIZE || data_length == CT_FD64_SIZE)
     {
-        crc_result = (crc8_atm(frame->DB, (uint8_t)(data_length-1U)) == frame->DB[data_length-1U]) ?
-                     "OK" : "BAD";
+        crc_result =
+            (crc8_atm(frame->DB, (uint8_t)(data_length - 1U)) == frame->DB[data_length - 1U])
+                ? "OK"
+                : "BAD";
     }
 
-    printf("TRACE CT %s FD+BRS id=0x%03X wire_dlc=%u bytes=%u data=[",
-           direction, (unsigned int)frame->IDL,
-           (unsigned int)(frame->DLC == CT_FD64_SIZE ? 15U : frame->DLC),
+    printf("TRACE CT %s FD+BRS id=0x%03X wire_dlc=%u bytes=%u data=[", direction,
+           (unsigned int)frame->IDL, (unsigned int)(frame->DLC == CT_FD64_SIZE ? 15U : frame->DLC),
            (unsigned int)frame->DLC);
     for (index = 0U; index < data_length; index++)
     {
@@ -167,8 +167,7 @@ static void trace_frame(const char *direction, const can_frame_t *frame)
     }
     printf("] seq=%u command=0x%02X crc=%s\r\n",
            (data_length > 2U) ? (unsigned int)frame->DB[2] : 0U,
-           (data_length > 3U) ? (unsigned int)frame->DB[3] : 0U,
-           crc_result);
+           (data_length > 3U) ? (unsigned int)frame->DB[3] : 0U, crc_result);
 #else
     (void)direction;
     (void)frame;
@@ -192,8 +191,7 @@ static void trace_pending_channel_error(void)
 
     now = (uint16_t)get_tick();
     if ((g_error_trace_started != 0U) &&
-        (elapsed_ms(g_error_trace_at, now) <
-         CAN_TRANSFER_ERROR_TRACE_INTERVAL_MS))
+        (elapsed_ms(g_error_trace_at, now) < CAN_TRANSFER_ERROR_TRACE_INTERVAL_MS))
     {
         return;
     }
@@ -209,8 +207,7 @@ static void trace_pending_channel_error(void)
     g_error_trace_started = 1U;
     g_error_trace_at = now;
 
-    printf("TRACE CT CAN_ERROR flags=0x%04X decoded=[",
-           (unsigned int)error_flags);
+    printf("TRACE CT CAN_ERROR flags=0x%04X decoded=[", (unsigned int)error_flags);
     if ((error_flags & CAN_TRANSFER_ERROR_BUS_FLAG) != 0U)
     {
         printf(" BUS_ERROR");
@@ -280,27 +277,30 @@ static void trace_runtime_state(const char *reason)
 {
     transfer_can_runtime_t state;
     Device_CanGetRuntimeDiagnostics(&state);
-    printf("TRACE CT STATE reason=%s tick=%u sw_tx=%u seq=%u cmd=0x%02X rx=%u tx=%u last_driver=0x%04X errors=0x%04X\r\n",
-           reason, (unsigned int)get_tick(), (unsigned int)g_tx_state,
-           (unsigned int)g_runtime_sequence, (unsigned int)g_runtime_command,
-           (unsigned int)g_stats.rx_frames, (unsigned int)g_stats.tx_frames,
-           (unsigned int)g_stats.last_driver_result,
-           (unsigned int)g_stats.last_error_flags);
-    printf("TRACE CT REGS RMNB=0x%04X RMND=0x%04X reads=%u overwritten=%u before=0x%04X after=0x%04X\r\n",
-           (unsigned int)state.rx_buffer_config, (unsigned int)state.rx_new_data,
-           (unsigned int)state.rx_reads, (unsigned int)state.rx_overwrites,
-           (unsigned int)state.last_rx_before, (unsigned int)state.last_rx_after);
-    printf("TRACE CT IRQ entries=%u queued=%u dequeued=%u depth=%u peak=%u drops=%u api_errors=%u RMIEC=0x%04X mask=%u pending=%u\r\n",
-           (unsigned int)state.rx_irqs, (unsigned int)state.rx_queued,
-           (unsigned int)state.rx_dequeued, (unsigned int)state.rx_queue_depth,
-           (unsigned int)state.rx_queue_peak, (unsigned int)state.rx_drops,
-           (unsigned int)state.rx_api_errors, (unsigned int)state.rx_irq_enable,
-           (unsigned int)state.rx_irq_mask, (unsigned int)state.rx_irq_pending);
-    printf("TRACE CT REGS GSTS=0x%04X C0STSL=0x%04X C0ERFLL=0x%04X TMC0=0x%02X TMSTS0=0x%02X last_tmsts=0x%02X window=0x%04X STB=%u\r\n",
-           (unsigned int)state.global_status, (unsigned int)state.channel_status,
-           (unsigned int)state.channel_errors, (unsigned int)state.tx_control,
-           (unsigned int)state.tx_status, (unsigned int)state.last_tx_status,
-           (unsigned int)state.ram_window, (unsigned int)state.standby);
+    printf(
+        "TRACE CT STATE reason=%s tick=%u sw_tx=%u seq=%u cmd=0x%02X rx=%u tx=%u last_driver=0x%04X errors=0x%04X\r\n",
+        reason, (unsigned int)get_tick(), (unsigned int)g_tx_state,
+        (unsigned int)g_runtime_sequence, (unsigned int)g_runtime_command,
+        (unsigned int)g_stats.rx_frames, (unsigned int)g_stats.tx_frames,
+        (unsigned int)g_stats.last_driver_result, (unsigned int)g_stats.last_error_flags);
+    printf(
+        "TRACE CT REGS RMNB=0x%04X RMND=0x%04X reads=%u overwritten=%u before=0x%04X after=0x%04X\r\n",
+        (unsigned int)state.rx_buffer_config, (unsigned int)state.rx_new_data,
+        (unsigned int)state.rx_reads, (unsigned int)state.rx_overwrites,
+        (unsigned int)state.last_rx_before, (unsigned int)state.last_rx_after);
+    printf(
+        "TRACE CT IRQ entries=%u queued=%u dequeued=%u depth=%u peak=%u drops=%u api_errors=%u RMIEC=0x%04X mask=%u pending=%u\r\n",
+        (unsigned int)state.rx_irqs, (unsigned int)state.rx_queued, (unsigned int)state.rx_dequeued,
+        (unsigned int)state.rx_queue_depth, (unsigned int)state.rx_queue_peak,
+        (unsigned int)state.rx_drops, (unsigned int)state.rx_api_errors,
+        (unsigned int)state.rx_irq_enable, (unsigned int)state.rx_irq_mask,
+        (unsigned int)state.rx_irq_pending);
+    printf(
+        "TRACE CT REGS GSTS=0x%04X C0STSL=0x%04X C0ERFLL=0x%04X TMC0=0x%02X TMSTS0=0x%02X last_tmsts=0x%02X window=0x%04X STB=%u\r\n",
+        (unsigned int)state.global_status, (unsigned int)state.channel_status,
+        (unsigned int)state.channel_errors, (unsigned int)state.tx_control,
+        (unsigned int)state.tx_status, (unsigned int)state.last_tx_status,
+        (unsigned int)state.ram_window, (unsigned int)state.standby);
 }
 
 static void trace_runtime_progress(void)
@@ -313,7 +313,9 @@ static void trace_runtime_progress(void)
         g_runtime_last_at = now;
         g_runtime_idle_samples = 0U;
         if ((g_runtime_rx_seen != 0U) && ((g_runtime_rx_seen & 15U) == 0U))
+        {
             trace_runtime_state("RX_CHECKPOINT");
+        }
     }
     else if ((g_runtime_rx_seen != 0U) && (g_runtime_idle_samples < 3U) &&
              (elapsed_ms(g_runtime_last_at, now) >= 1000U))
@@ -357,52 +359,51 @@ static uint16_t get_stat_value(uint8_t index)
     DI();
     switch (index)
     {
-        case CAN_TRANSFER_STATS_RX_FRAMES:
-            value = g_stats.rx_frames;
-            break;
-        case CAN_TRANSFER_STATS_TX_FRAMES:
-            value = g_stats.tx_frames;
-            break;
-        case CAN_TRANSFER_STATS_RX_LOST:
-            value = g_stats.rx_lost;
-            break;
-        case CAN_TRANSFER_STATS_TX_FAILURES:
-            value = g_stats.tx_failures;
-            break;
-        case CAN_TRANSFER_STATS_PROTOCOL_ERRORS:
-            value = g_stats.protocol_errors;
-            break;
-        case CAN_TRANSFER_STATS_CRC_ERRORS:
-            value = g_stats.crc_errors;
-            break;
-        case CAN_TRANSFER_STATS_DUPLICATES:
-            value = g_stats.duplicates;
-            break;
-        case CAN_TRANSFER_STATS_WARNING_ENTRIES:
-            value = g_stats.warning_entries;
-            break;
-        case CAN_TRANSFER_STATS_PASSIVE_ENTRIES:
-            value = g_stats.passive_entries;
-            break;
-        case CAN_TRANSFER_STATS_BUS_OFF_ENTRIES:
-            value = g_stats.bus_off_entries;
-            break;
-        case CAN_TRANSFER_STATS_LAST_DRIVER_RESULT:
-            value = g_stats.last_driver_result;
-            break;
-        case CAN_TRANSFER_STATS_LAST_ERROR_FLAGS:
-            value = g_stats.last_error_flags;
-            break;
-        default:
-            break;
+    case CAN_TRANSFER_STATS_RX_FRAMES:
+        value = g_stats.rx_frames;
+        break;
+    case CAN_TRANSFER_STATS_TX_FRAMES:
+        value = g_stats.tx_frames;
+        break;
+    case CAN_TRANSFER_STATS_RX_LOST:
+        value = g_stats.rx_lost;
+        break;
+    case CAN_TRANSFER_STATS_TX_FAILURES:
+        value = g_stats.tx_failures;
+        break;
+    case CAN_TRANSFER_STATS_PROTOCOL_ERRORS:
+        value = g_stats.protocol_errors;
+        break;
+    case CAN_TRANSFER_STATS_CRC_ERRORS:
+        value = g_stats.crc_errors;
+        break;
+    case CAN_TRANSFER_STATS_DUPLICATES:
+        value = g_stats.duplicates;
+        break;
+    case CAN_TRANSFER_STATS_WARNING_ENTRIES:
+        value = g_stats.warning_entries;
+        break;
+    case CAN_TRANSFER_STATS_PASSIVE_ENTRIES:
+        value = g_stats.passive_entries;
+        break;
+    case CAN_TRANSFER_STATS_BUS_OFF_ENTRIES:
+        value = g_stats.bus_off_entries;
+        break;
+    case CAN_TRANSFER_STATS_LAST_DRIVER_RESULT:
+        value = g_stats.last_driver_result;
+        break;
+    case CAN_TRANSFER_STATS_LAST_ERROR_FLAGS:
+        value = g_stats.last_error_flags;
+        break;
+    default:
+        break;
     }
     EI();
 
     return value;
 }
 
-static void build_response(uint8_t sequence, uint8_t command,
-                           uint8_t payload0, uint8_t payload1,
+static void build_response(uint8_t sequence, uint8_t command, uint8_t payload0, uint8_t payload1,
                            uint8_t payload2, uint8_t *response)
 {
     response[0] = CAN_TRANSFER_RESPONSE_MAGIC;
@@ -415,12 +416,11 @@ static void build_response(uint8_t sequence, uint8_t command,
     response[7] = crc8_atm(response, 7U);
 }
 
-static void build_error_response(uint8_t sequence, uint8_t request_command,
-                                 uint8_t status, uint8_t detail,
-                                 uint8_t *response)
+static void build_error_response(uint8_t sequence, uint8_t request_command, uint8_t status,
+                                 uint8_t detail, uint8_t *response)
 {
-    build_response(sequence, CAN_TRANSFER_CMD_ERROR_RESPONSE,
-                   request_command, status, detail, response);
+    build_response(sequence, CAN_TRANSFER_CMD_ERROR_RESPONSE, request_command, status, detail,
+                   response);
 }
 
 static uint8_t start_transmit(const uint8_t *response, uint8_t length)
@@ -462,8 +462,7 @@ static uint8_t start_transmit(const uint8_t *response, uint8_t length)
     return 1U;
 }
 
-static void cache_and_transmit(const can_frame_t *request,
-                               const uint8_t *response)
+static void cache_and_transmit(const can_frame_t *request, const uint8_t *response)
 {
     g_cached_length = request->DLC;
     memcpy(g_cached_request, request->DB, g_cached_length);
@@ -490,8 +489,7 @@ static void poll_transmit(void)
         return;
     }
 
-    if ((result == CAN_RTN_TX_ABORT_OVER) ||
-        (result == CAN_RTN_TX_END_WITH_ABORT_REQ))
+    if ((result == CAN_RTN_TX_ABORT_OVER) || (result == CAN_RTN_TX_END_WITH_ABORT_REQ))
     {
         increment_u16(&g_stats.tx_failures);
         g_tx_state = CAN_TRANSFER_TX_IDLE;
@@ -551,40 +549,39 @@ static uint8_t build_device_info(const can_frame_t *request, uint8_t *response)
 
     switch (page)
     {
-        case CAN_TRANSFER_INFO_PAGE_VERSION:
-            value0 = CAN_TRANSFER_PROTOCOL_MAJOR;
-            value1 = CAN_TRANSFER_PROTOCOL_MINOR;
-            break;
-        case CAN_TRANSFER_INFO_PAGE_TARGET:
-            value0 = (uint8_t)(CAN_TRANSFER_TARGET_ID & 0xFFU);
-            value1 = (uint8_t)(CAN_TRANSFER_TARGET_ID >> 8);
-            break;
-        case CAN_TRANSFER_INFO_PAGE_PART_0:
-            value0 = (uint8_t)'R';
-            value1 = (uint8_t)'7';
-            break;
-        case CAN_TRANSFER_INFO_PAGE_PART_1:
-            value0 = (uint8_t)'F';
-            value1 = (uint8_t)'1';
-            break;
-        case CAN_TRANSFER_INFO_PAGE_PART_2:
-            value0 = (uint8_t)'2';
-            value1 = (uint8_t)'4';
-            break;
-        case CAN_TRANSFER_INFO_PAGE_PART_3:
-            value0 = (uint8_t)'F';
-            value1 = (uint8_t)'P';
-            break;
-        case CAN_TRANSFER_INFO_PAGE_CAPABILITIES:
-            value0 = (uint8_t)(0x3FU | CT_FD64_CAPABILITY);
-            value1 = 0U;
-            break;
-        default:
-            return 0U;
+    case CAN_TRANSFER_INFO_PAGE_VERSION:
+        value0 = CAN_TRANSFER_PROTOCOL_MAJOR;
+        value1 = CAN_TRANSFER_PROTOCOL_MINOR;
+        break;
+    case CAN_TRANSFER_INFO_PAGE_TARGET:
+        value0 = (uint8_t)(CAN_TRANSFER_TARGET_ID & 0xFFU);
+        value1 = (uint8_t)(CAN_TRANSFER_TARGET_ID >> 8);
+        break;
+    case CAN_TRANSFER_INFO_PAGE_PART_0:
+        value0 = (uint8_t)'R';
+        value1 = (uint8_t)'7';
+        break;
+    case CAN_TRANSFER_INFO_PAGE_PART_1:
+        value0 = (uint8_t)'F';
+        value1 = (uint8_t)'1';
+        break;
+    case CAN_TRANSFER_INFO_PAGE_PART_2:
+        value0 = (uint8_t)'2';
+        value1 = (uint8_t)'4';
+        break;
+    case CAN_TRANSFER_INFO_PAGE_PART_3:
+        value0 = (uint8_t)'F';
+        value1 = (uint8_t)'P';
+        break;
+    case CAN_TRANSFER_INFO_PAGE_CAPABILITIES:
+        value0 = (uint8_t)(0x3FU | CT_FD64_CAPABILITY);
+        value1 = 0U;
+        break;
+    default:
+        return 0U;
     }
 
-    build_response(request->DB[2], request->DB[3], page,
-                   value0, value1, response);
+    build_response(request->DB[2], request->DB[3], page, value0, value1, response);
     return 1U;
 }
 
@@ -597,55 +594,48 @@ static uint8_t dispatch_request(const can_frame_t *request, uint8_t *response)
     command = request->DB[3];
     switch (command)
     {
-        case CAN_TRANSFER_CMD_DEVICE_INFO:
-            return build_device_info(request, response);
+    case CAN_TRANSFER_CMD_DEVICE_INFO:
+        return build_device_info(request, response);
 
-        case CAN_TRANSFER_CMD_PING:
-        case CAN_TRANSFER_CMD_ECHO:
-            build_response(request->DB[2], command, request->DB[4],
-                           request->DB[5], request->DB[6], response);
-            return 1U;
+    case CAN_TRANSFER_CMD_PING:
+    case CAN_TRANSFER_CMD_ECHO:
+        build_response(request->DB[2], command, request->DB[4], request->DB[5], request->DB[6],
+                       response);
+        return 1U;
 
-        case CAN_TRANSFER_CMD_PATTERN_TEST:
-            build_response(request->DB[2], command,
-                           (uint8_t)(request->DB[4] ^ 0xA5U),
-                           (uint8_t)(request->DB[5] + 0x3DU),
-                           (uint8_t)((request->DB[6] << 1) |
-                                     (request->DB[6] >> 7)),
-                           response);
-            return 1U;
+    case CAN_TRANSFER_CMD_PATTERN_TEST:
+        build_response(request->DB[2], command, (uint8_t)(request->DB[4] ^ 0xA5U),
+                       (uint8_t)(request->DB[5] + 0x3DU),
+                       (uint8_t)((request->DB[6] << 1) | (request->DB[6] >> 7)), response);
+        return 1U;
 
-        case CAN_TRANSFER_CMD_GET_STATS:
-            index = request->DB[4];
-            if ((index > CAN_TRANSFER_STATS_LAST_ERROR_FLAGS) ||
-                (request->DB[5] != 0U) || (request->DB[6] != 0U))
-            {
-                return 0U;
-            }
-            value = get_stat_value(index);
-            build_response(request->DB[2], command, index,
-                           (uint8_t)(value & 0xFFU),
-                           (uint8_t)(value >> 8), response);
-            return 1U;
+    case CAN_TRANSFER_CMD_GET_STATS:
+        index = request->DB[4];
+        if ((index > CAN_TRANSFER_STATS_LAST_ERROR_FLAGS) || (request->DB[5] != 0U) ||
+            (request->DB[6] != 0U))
+        {
+            return 0U;
+        }
+        value = get_stat_value(index);
+        build_response(request->DB[2], command, index, (uint8_t)(value & 0xFFU),
+                       (uint8_t)(value >> 8), response);
+        return 1U;
 
-        case CAN_TRANSFER_CMD_CLEAR_STATS:
-            if ((request->DB[4] != CAN_TRANSFER_CLEAR_KEY_0) ||
-                (request->DB[5] != CAN_TRANSFER_CLEAR_KEY_1) ||
-                (request->DB[6] != 0U))
-            {
-                return 0U;
-            }
-            clear_stats();
-            build_response(request->DB[2], command,
-                           CAN_TRANSFER_CLEAR_KEY_0,
-                           CAN_TRANSFER_CLEAR_KEY_1, 0U, response);
-            return 1U;
+    case CAN_TRANSFER_CMD_CLEAR_STATS:
+        if ((request->DB[4] != CAN_TRANSFER_CLEAR_KEY_0) ||
+            (request->DB[5] != CAN_TRANSFER_CLEAR_KEY_1) || (request->DB[6] != 0U))
+        {
+            return 0U;
+        }
+        clear_stats();
+        build_response(request->DB[2], command, CAN_TRANSFER_CLEAR_KEY_0, CAN_TRANSFER_CLEAR_KEY_1,
+                       0U, response);
+        return 1U;
 
-        default:
-            build_error_response(request->DB[2], command,
-                                 CAN_TRANSFER_STATUS_BAD_COMMAND, 0U,
-                                 response);
-            return 2U;
+    default:
+        build_error_response(request->DB[2], command, CAN_TRANSFER_STATUS_BAD_COMMAND, 0U,
+                             response);
+        return 2U;
     }
 }
 
@@ -688,8 +678,7 @@ static void process_receive(void)
         increment_u16(&g_stats.rx_lost);
     }
 
-    if ((request.IDE != 0U) || (request.RTR != 0U) ||
-        (request.IDL != CAN_TRANSFER_REQUEST_ID) ||
+    if ((request.IDE != 0U) || (request.RTR != 0U) || (request.IDL != CAN_TRANSFER_REQUEST_ID) ||
         (request.IDH != 0U))
     {
         increment_u16(&g_stats.protocol_errors);
@@ -699,7 +688,7 @@ static void process_receive(void)
     if (request.DLC == CT_FD64_SIZE)
     {
         /* FD64 errors are counted and dropped; no truncated8-byte reply. */
-        if (crc8_atm(request.DB, CT_FD64_SIZE-1U) != request.DB[CT_FD64_SIZE-1U])
+        if (crc8_atm(request.DB, CT_FD64_SIZE - 1U) != request.DB[CT_FD64_SIZE - 1U])
         {
             increment_u16(&g_stats.crc_errors);
             increment_u16(&g_stats.protocol_errors);
@@ -726,7 +715,7 @@ static void process_receive(void)
         }
         memcpy(response, request.DB, CT_FD64_SIZE);
         response[0] = CAN_TRANSFER_RESPONSE_MAGIC;
-        response[CT_FD64_SIZE-1U] = crc8_atm(response, CT_FD64_SIZE-1U);
+        response[CT_FD64_SIZE - 1U] = crc8_atm(response, CT_FD64_SIZE - 1U);
         cache_and_transmit(&request, response);
         return;
     }
@@ -740,8 +729,8 @@ static void process_receive(void)
     {
         increment_u16(&g_stats.crc_errors);
         increment_u16(&g_stats.protocol_errors);
-        build_error_response(request.DB[2], request.DB[3],
-                             CAN_TRANSFER_STATUS_CRC_ERROR, 0U, response);
+        build_error_response(request.DB[2], request.DB[3], CAN_TRANSFER_STATUS_CRC_ERROR, 0U,
+                             response);
         cache_and_transmit(&request, response);
         return;
     }
@@ -749,9 +738,8 @@ static void process_receive(void)
     if (request.DB[0] != CAN_TRANSFER_REQUEST_MAGIC)
     {
         increment_u16(&g_stats.protocol_errors);
-        build_error_response(request.DB[2], request.DB[3],
-                             CAN_TRANSFER_STATUS_BAD_MAGIC, request.DB[0],
-                             response);
+        build_error_response(request.DB[2], request.DB[3], CAN_TRANSFER_STATUS_BAD_MAGIC,
+                             request.DB[0], response);
         cache_and_transmit(&request, response);
         return;
     }
@@ -759,9 +747,8 @@ static void process_receive(void)
     if (request.DB[1] != CAN_TRANSFER_PROTOCOL_MAJOR)
     {
         increment_u16(&g_stats.protocol_errors);
-        build_error_response(request.DB[2], request.DB[3],
-                             CAN_TRANSFER_STATUS_BAD_VERSION, request.DB[1],
-                             response);
+        build_error_response(request.DB[2], request.DB[3], CAN_TRANSFER_STATUS_BAD_VERSION,
+                             request.DB[1], response);
         cache_and_transmit(&request, response);
         return;
     }
@@ -769,8 +756,8 @@ static void process_receive(void)
     if (request.DB[2] == 0U)
     {
         increment_u16(&g_stats.protocol_errors);
-        build_error_response(request.DB[2], request.DB[3],
-                             CAN_TRANSFER_STATUS_BAD_SEQUENCE, 0U, response);
+        build_error_response(request.DB[2], request.DB[3], CAN_TRANSFER_STATUS_BAD_SEQUENCE, 0U,
+                             response);
         cache_and_transmit(&request, response);
         return;
     }
@@ -783,12 +770,11 @@ static void process_receive(void)
         return;
     }
 
-    if ((g_cache_valid != 0U) &&
-        (request.DB[2] == g_cached_request[2]))
+    if ((g_cache_valid != 0U) && (request.DB[2] == g_cached_request[2]))
     {
         increment_u16(&g_stats.protocol_errors);
-        build_error_response(request.DB[2], request.DB[3],
-                             CAN_TRANSFER_STATUS_BAD_SEQUENCE, 0U, response);
+        build_error_response(request.DB[2], request.DB[3], CAN_TRANSFER_STATUS_BAD_SEQUENCE, 0U,
+                             response);
         cache_and_transmit(&request, response);
         return;
     }
@@ -797,8 +783,8 @@ static void process_receive(void)
     if (dispatch_result == 0U)
     {
         increment_u16(&g_stats.protocol_errors);
-        build_error_response(request.DB[2], request.DB[3],
-                             CAN_TRANSFER_STATUS_BAD_ARGUMENT, 0U, response);
+        build_error_response(request.DB[2], request.DB[3], CAN_TRANSFER_STATUS_BAD_ARGUMENT, 0U,
+                             response);
     }
     else if (dispatch_result == 2U)
     {

@@ -7,14 +7,15 @@
  * Stages identify the last completed/failed initialization check. Result is
  * the Renesas CAN result, including WAITING for an active-state timeout.
  */
-#define TRANSFER_CAN_STAGE_CONFIG  (1U)
-#define TRANSFER_CAN_STAGE_STATE   (2U)
-#define TRANSFER_CAN_STAGE_START   (3U)
-#define TRANSFER_CAN_STAGE_ACTIVE  (4U)
-#define TRANSFER_CAN_STAGE_READY   (5U)
+#define TRANSFER_CAN_STAGE_CONFIG (1U)
+#define TRANSFER_CAN_STAGE_STATE (2U)
+#define TRANSFER_CAN_STAGE_START (3U)
+#define TRANSFER_CAN_STAGE_ACTIVE (4U)
+#define TRANSFER_CAN_STAGE_READY (5U)
 #define TRANSFER_CAN_RX_QUEUE_SIZE (8U)
 
-typedef struct {
+typedef struct
+{
     uint16_t result;
     uint16_t global_status;
     uint16_t channel_status;
@@ -34,7 +35,8 @@ void Device_CanGetDiagnostics(transfer_can_diagnostics_t *diagnostics);
  * last_tx_status preserves the
  * status sampled by TX polling before its normal completion-flag clear.
  */
-typedef struct {
+typedef struct
+{
     uint16_t rx_buffer_config;
     uint16_t rx_new_data;
     uint16_t last_rx_before;

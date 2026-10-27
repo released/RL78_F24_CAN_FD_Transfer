@@ -126,3 +126,12 @@ verified with saved user Tool/UART logs. That does not establish queue-full,
 sustained-burst,Flash-update or power-fault acceptance.
 See [FD Custom Transfer operation](https://released.github.io/slide_isp_tool_for_RL78/#can-fd-custom-transfer)
 and [diagnostic fields](https://released.github.io/slide_isp_tool_for_RL78/#transfer-diagnostics).
+
+## User code entry
+
+`custom_func.c` provides `hardware_init()` for initialization and `loop()` for
+foreground service. Add application initialization and foreground work through
+these callbacks, retaining the existing communication service calls.
+The selected main/startup adapter owns entry and handoff. Generated peripheral
+files remain under `src/`; retain the project's MTPJ source selection when using
+Code Generator or Smart Configurator, then rebuild to validate the image and vectors.
