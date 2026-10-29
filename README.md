@@ -23,33 +23,6 @@ Capability bit6 announces the extension. Identical requests replay the complete
 response; conflicting sequence content, invalid format and bad CRC are counted
 and dropped. There are no Flash programming commands.
 
-## Build and outputs
-
-Use Windows PowerShell 5.1/.NET and CS+ CC-RL; no Python is required.
-The required sibling layout is:
-
-```text
-workspace/
-  RL78_F24_Boot_loader_CAN_FD/   # shared board/driver and build helpers
-  RL78_F24_CAN_FD_Transfer/      # standalone Transfer project
-```
-
-The Boot checkout is required as a source dependency; building Transfer does
-not build or program Boot. Keep both directory names when relocating checkouts.
-From this directory:
-
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
-```
-
-The entry selects only FD Transfer. Pre/post hooks reference FD helpers and
-validate explicit stack, RAM/Flash bounds and the linked project.
-Run the same entry after SC regeneration.
-Programmer delivery is `DefaultBuild/RL78_F24_CAN_FD_Transfer.hex`.
-The raw MOT/map are compiler/packaging inputs, not CAN Upgrade BINs.
-Installing this standalone image replaces the board's existing program;
-check the actual MCU and programmer erase range first.
-
 ## Tool operation
 
 Use a verified CAN FD-capable host. F24 Host App 1.7.0 already supports
@@ -102,7 +75,7 @@ keep drops/overwritten/api_errors=0 and return to depth=0,queued=dequeued.
 After a power cycle,
 reconnect diagnostic UART and capture INIT/CAN init/STB before interpreting
 the next request. Heartbeat LEDs can toggle even if CAN initialization fails.
-See [FD runtime diagnostic fields](https://released.github.io/slide_isp_tool_for_RL78/#can-fd-transfer-diagnostics).
+See [FD runtime diagnostic fields](https://released.github.io/slide_simple_renesas_isp_tool/#can-fd-transfer-diagnostics).
 Formatting and protocol processing run in the main loop, not an ISR.
 Hardware flags are coalesced and UART error summaries are throttled to 250 ms;
 their counters are software observations, not precise physical error counts.
@@ -124,8 +97,8 @@ FD bus, power, Flash, IRQ or analyzer evidence.
 Normal request/reply operation of this RXMB interrupt image has also been
 verified with saved user Tool/UART logs. That does not establish queue-full,
 sustained-burst,Flash-update or power-fault acceptance.
-See [FD Custom Transfer operation](https://released.github.io/slide_isp_tool_for_RL78/#can-fd-custom-transfer)
-and [diagnostic fields](https://released.github.io/slide_isp_tool_for_RL78/#transfer-diagnostics).
+See [FD Custom Transfer operation](https://released.github.io/slide_simple_renesas_isp_tool/#can-fd-custom-transfer)
+and [diagnostic fields](https://released.github.io/slide_simple_renesas_isp_tool/#transfer-diagnostics).
 
 ## User code entry
 
@@ -135,3 +108,36 @@ these callbacks, retaining the existing communication service calls.
 The selected main/startup adapter owns entry and handoff. Generated peripheral
 files remain under `src/`; retain the project's MTPJ source selection when using
 Code Generator or Smart Configurator, then rebuild to validate the image and vectors.
+
+## Project layout and standalone build
+
+This project includes its own source files, configuration headers and build tools.
+A sibling Boot, App or Transfer checkout is not required to compile it.
+Keep the project directory name aligned with its `.mtpj` filename; remove a ZIP download suffix when necessary.
+Build with CS+ Rebuild, or run the local PowerShell entry:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
+```
+
+| Location | Responsibility |
+| --- | --- |
+| `custom_func.c` | Project initialization in `hardware_init()` and recurring work in `loop()`; runtime orchestration stays here |
+| `hal/can` | CAN service, controller driver and CAN adapter, when used by this project |
+| `hal/device` | Device, clock, peripheral and CPU handoff APIs |
+| `hal/image` | Metadata parser/profile, image validation and software CRC |
+| `hal/flash` | Flash access/geometry APIs, when required by the selected image |
+| `hal/isp` | Update/Transfer protocol and transport processing APIs |
+| Root configuration headers | Local MCU/Flash, handoff and communication contract |
+| `tools` and root PowerShell helpers | Local metadata/IRQ generation and linked-image checks |
+| `src` | Code Generator or Smart Configurator peripheral sources |
+
+Only the sources registered in this project's CS+ configuration are linked.
+Generated main/vector implementations must not become a second active entry.
+Retain the `custom_func.c` callbacks and the selected startup adapter after code generation.
+
+Boot and App each carry a local contract. Keep their MCU, Flash layout, image format,
+IRQ ABI, handoff and communication settings compatible when installing a pair.
+App releases are edited in `app_image_config.h` and `app_irq_handlers.h` in the App project.
+Rebuild the selected App to regenerate its metadata, vector table, update BIN and timing BINs.
+The App build does not read or rewrite a Boot checkout.

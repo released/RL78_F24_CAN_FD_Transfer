@@ -1,3 +1,8 @@
+/* Project/API reading notes: Standalone non-destructive CAN test protocol.
+ * Discovery, echo, patterns, statistics and replay handling verify communication without
+ * erasing/programming App Flash.
+ * FD payload length and CRC checks remain part of the request contract.
+ */
 #include <stdio.h>
 #include <string.h>
 

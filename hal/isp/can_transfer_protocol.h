@@ -1,3 +1,8 @@
+/* Project/API reading notes: Non-destructive CAN test contract, separate from the Boot update
+ * session.
+ * The caller supplies complete validated frames and sends replies through the selected physical
+ * CAN port.
+ */
 #ifndef CAN_TRANSFER_PROTOCOL_H
 #define CAN_TRANSFER_PROTOCOL_H
 

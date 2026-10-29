@@ -1,3 +1,8 @@
+/* Project/API reading notes: Project-owned initialization and foreground work.
+ * The selected main/startup adapter calls hardware_init() once and loop() repeatedly.
+ * Keep application changes here so generated entry sources remain replaceable; lower-level APIs
+ * live in this project's hal directories.
+ */
 #include "platform.h"
 #include <stdio.h>
 #include "device_board.h"
@@ -17,6 +22,10 @@ static uint8_t g_custom_ready;
 static uint16_t g_custom_errors;
 static transfer_can_diagnostics_t g_custom_diagnostics;
 
+/* Initialize the role selected by this project before foreground processing.
+ * Preserve clock, image/handoff and peripheral/IRQ enable order when adding application
+ * initialization.
+ */
 void hardware_init(void)
 {
     if (!Device_BoardInit())
@@ -43,6 +52,10 @@ void hardware_init(void)
     Device_Log("CAN RX backend: RXMB0 interrupt -> RAM queue=8 -> main; payload=64 TX=polling\r\n");
 }
 
+/* Foreground service point called repeatedly by the selected main adapter.
+ * Keep protocol/application work and text logging bounded so pending traffic and deferred actions
+ * can continue.
+ */
 void loop(void)
 {
 
