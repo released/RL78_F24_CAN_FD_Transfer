@@ -141,3 +141,9 @@ IRQ ABI, handoff and communication settings compatible when installing a pair.
 App releases are edited in `app_image_config.h` and `app_irq_handlers.h` in the App project.
 Rebuild the selected App to regenerate its metadata, vector table, update BIN and timing BINs.
 The App build does not read or rewrite a Boot checkout.
+
+## UART0 local reset
+
+- Diagnostic UART0 uses115200,8-N-1. Terminal TX connects to device UART0 RX with a common ground.
+- Sending `z` or `Z` requests a normal MCU reset from the foreground loop.
+- App restart follows the existing Boot/App validation flow. Tool Enter Boot remains the separate update-mode operation.

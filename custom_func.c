@@ -6,6 +6,8 @@
 #include "platform.h"
 #include <stdio.h>
 #include "device_board.h"
+#define UART0_CONSOLE_RESET() Device_Reset()
+#include "uart0_reset_console.inc"
 #include "can_transfer_protocol.h"
 #include "can_transfer_config.h"
 #include "transfer_diagnostics.h"
@@ -50,6 +52,7 @@ void hardware_init(void)
         (unsigned int)CAN_TRANSFER_REQUEST_ID, g_custom_diagnostics.standby ? "HIGH" : "LOW");
     Device_Log("hardware_init finish\r\n");
     Device_Log("CAN RX backend: RXMB0 interrupt -> RAM queue=8 -> main; payload=64 TX=polling\r\n");
+    Device_Log("UART0 console: z/Z reset\r\n");
 }
 
 /* Foreground service point called repeatedly by the selected main adapter.
@@ -58,6 +61,8 @@ void hardware_init(void)
  */
 void loop(void)
 {
+    Uart0ResetPoll();
+
 
     g_custom_errors = Device_CanPollErrors();
     if (g_custom_errors != 0U)
